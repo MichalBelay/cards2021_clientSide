@@ -5,7 +5,10 @@ import NavBar from './comps/navbar';
 import Home from './comps/home';
 import About from './comps/about';
 import Page404 from './comps/page404';
+
+import Login from './comps/login';
 import SingupClient from './comps/singup';
+import Footer from './comps/footer';
 
 function App() {
   return (
@@ -17,12 +20,16 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/about" component={About}/>
-          <Route exact path="singup" component={SingupClient}/>
-          
+           <Route exact path="/login" component={Login}/>
+          <Route exact path="/signup" component={SingupClient}/>
+           
+
           <Route path="/" component={Page404}/>
         </Switch>
       </main>
-      <footer></footer>
+      <footer>
+        <Footer/>
+      </footer>
     </Router>
   );
 }

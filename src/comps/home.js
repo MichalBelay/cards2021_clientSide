@@ -1,11 +1,12 @@
 import React from 'react';
+import PageHeader from '../commne/pageHeader';
 
 function Home(props){
   return(
     <div>
-      <h1>Welcome to cards app</h1>
+      <PageHeader title="welcom to home page" />
     </div> 
   )
 }
 
-export default Home
+export default Home;
