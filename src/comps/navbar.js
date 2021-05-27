@@ -5,7 +5,7 @@ function NavBar(props) {
 
 
   return (
-    <div className="container nav_top">
+    <div className="container nav_top p-2">
       <div className="row align-items-center">
         <div className="logo col-lg-3 d-flex justify-content-between align-items-center">
           <h2 className="text-danger">Cards project</h2>
@@ -16,12 +16,12 @@ function NavBar(props) {
           </div>
         </div>
         {/* style -> with condition */}
-        <nav className="col-lg-9 text-end" style={{ display: showMobileNav && "block" }}>
-       <Link to="/">Home</Link>
+        <nav className={"col-lg-9 text-end"} style={{ display: showMobileNav && "block" }} >
+          <Link  to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/login">Log in</Link>
           <Link to="/signup">Sign up</Link>
-
+       
         </nav>
       </div>
     </div>
