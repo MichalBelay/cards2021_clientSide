@@ -1,30 +1,28 @@
 import React from 'react';
-import {useForm} from 'react-hook-form';
-import PageHeader from '../commne/pageHeader';
+import {useForm} from "react-hook-form";
+import PageHeader from './common/pageHeader';
 
 function Login(props){
+  let {register , handleSubmit ,  formState: { errors } } = useForm();
+  
+  const onSubForm = (formData) => {
+    console.log(formData);
+    //TODO: send formData to nodejs project /users/login in post
+  }
 
-    let {register , handleSubmit ,  formState: { errors } } = useForm();
-
-    const onSubForm = (formData) =>{
-        console.log(formData);
-    }
-
-    let emailRef = register("email",{
+  // register -> ref= useRef()
+  let emailRef = register("email",{
     required:true,  
     pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
   })
 
   let passwordRef =  register("password",{required:true, minLength:3}) ;
-  
 
-
-
-    return(
-        <div className="container">
-    <PageHeader title="Log in"/>
-    <form onSubmit={handleSubmit(onSubForm)} className="col-lg-6 mx-auto shadow p-3 rounded">
-       
+  return(
+    <div className="container">
+    
+    <form onSubmit={handleSubmit(onSubForm)} className="col-lg-6 mx-auto shadow p-3 rounded mt-3">
+      <PageHeader title="Log in" />
       <div>
         <label>Email:</label>
         <input {...emailRef} type="text" className="form-control" />
@@ -35,12 +33,11 @@ function Login(props){
         <input {...passwordRef} type="text" className="form-control" />
         {errors.password && <span className="text-danger">Enter min 3 charts password</span>}
       </div>
-      
-      <button className="btn btn-info mt-3">Sign up</button>
+     
+      <button className="btn btn-success mt-3">Log in</button>
     </form>
   </div>
- 
-    )
+  )
 }
 
-export default Login;
+export default Login

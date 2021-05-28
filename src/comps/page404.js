@@ -1,12 +1,12 @@
 import React from 'react';
-import PageHeader from '../commne/pageHeader';
+import PageHeader from './common/pageHeader';
 
 function Page404(props){
   return(
     <div>
-      <PageHeader title="page 404 not found"/>
+      <PageHeader title="Page not found , 404!" />
     </div> 
   )
 }
 
-export default Page404;
+export default Page404
