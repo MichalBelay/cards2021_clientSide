@@ -2,6 +2,8 @@ import React from 'react';
 import {useForm} from "react-hook-form";
 import { API_URL, doApiMethod } from '../services/apiSer';
 import PageHeader from './common/pageHeader';
+import {toast} from "react-toastify";
+
 
 function Login(props){
   let {register , handleSubmit ,  formState: { errors } } = useForm();
@@ -17,10 +19,11 @@ function Login(props){
       // קיבלנו טוקן : נשמור בלוקאל סטוראז ונשלח את המשמש
       localStorage.setItem("tok",data.token)
       // להצגת מידע על עצמו
+      toast.success("you logged in , good for you");
     }
     catch(err){
       console.log(err);
-      alert("error user not found or maybe its password, you will never know!")
+      toast.error("error user not found or maybe its password, you will never know!")
     }
 
   }

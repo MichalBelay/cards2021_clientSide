@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
+
 import './App.css';
 import './css_comps/header_nav.css'
 import NavBar from './comps/navbar';
@@ -8,6 +11,7 @@ import Page404 from './comps/page404';
 import SignUpClient from './comps/signup';
 import Login from './comps/login';
 import Footer from './comps/footer';
+
 
 function App() {
   return (
@@ -27,6 +31,7 @@ function App() {
       <footer>
         <Footer />
       </footer>
+      <ToastContainer/>
     </Router>
   );
 }
