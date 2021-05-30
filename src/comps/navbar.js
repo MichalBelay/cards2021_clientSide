@@ -2,6 +2,11 @@ import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
 function NavBar(props) {
   let [showMobileNav,setShowMobileNav] = useState(false);
+//hide nav in mobile after clickd
+  const hideNavMobile = () => {
+    setShowMobileNav(false);
+  }
+
 
 
   return (
@@ -16,7 +21,8 @@ function NavBar(props) {
           </div>
         </div>
         {/* style -> with condition */}
-        <nav className={"col-lg-9 text-end"} style={{ display: showMobileNav && "block" }} >
+        <nav onClick={hideNavMobile}
+ className={"col-lg-9 text-end"} style={{ display: showMobileNav && "block" }} >
           <Link  to="/">Home</Link>
           <Link to="/about">About</Link>
           <Link to="/login">Log in</Link>

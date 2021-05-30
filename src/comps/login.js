@@ -1,13 +1,28 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
+import { API_URL, doApiMethod } from '../services/apiSer';
 import PageHeader from './common/pageHeader';
 
 function Login(props){
   let {register , handleSubmit ,  formState: { errors } } = useForm();
   
-  const onSubForm = (formData) => {
+  const onSubForm = async(formData) => {
     console.log(formData);
     //TODO: send formData to nodejs project /users/login in post
+    try{
+
+      let url = API_URL+"/users/login";
+      let data = await doApiMethod(url,"POST",formData);
+      console.log(data);
+      // קיבלנו טוקן : נשמור בלוקאל סטוראז ונשלח את המשמש
+      localStorage.setItem("tok",data.token)
+      // להצגת מידע על עצמו
+    }
+    catch(err){
+      console.log(err);
+      alert("error user not found or maybe its password, you will never know!")
+    }
+
   }
 
   // register -> ref= useRef()
