@@ -17,7 +17,8 @@ function App() {
   return (
     <Router>
       <header className="container-fluid shadow-sm">
-        <NavBar  />
+        <Route path="/" component={NavBar} />
+
       </header>
       <main className="container" style={{minHeight:"81vh"}}>
         <Switch>
@@ -25,8 +26,8 @@ function App() {
           <Route exact path="/about" component={About}/>
           <Route exact path="/signup" component={SignUpClient}/>
           <Route exact path="/login" component={Login}/>
-            <Route exact path="/userinfo" component={UserInfo}/>
-            <ProtectedRoute path="/userInfo2" comp={UserInfo}/>
+            
+            <ProtectedRoute path="/userInfo" comp={UserInfo}/>
 
           <Route path="/" component={Page404}/>
         </Switch>

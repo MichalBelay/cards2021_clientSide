@@ -4,7 +4,8 @@ import { API_URL, doApiMethod } from "./apiSer"
 export const checkIfUser = async() => {
   // check if there localstorage
   if(!localStorage["tok"]){
-    window.location.href = "/login";
+      return{err:"No token in localStorage"};
+    // window.location.href = "/login";
   }
   try{
     // check if token valid in nodejs
