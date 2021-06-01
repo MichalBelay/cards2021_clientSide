@@ -12,24 +12,27 @@ function ProtectedRoute(props) {
   //  כדי להשתמש בקומפנינטה שהועבר בפרופס אנחנו כותבים
   // <props.comps />
 
-  const checkAuth = () => {
-    checkIfUser()
-    .then(data => {
-      console.log(data);
-      if(!data.status){
-        toast.error("There problem, log in please")
-        localStorage.removeItem("tok");
-        history.push("/login");
-      }
-    })
-    return (<props.comp />);
-  }
 
+  //  מפעיל את הקומפנינטה בכל מקרה
+  // וברגע שמקבל מהפונקציה שהשרת לא מזהה את הטוקן או שהוא 
+  // לא תקף ישגר אותו עם הודעה ללוג אין
   return (
     <Route exact path={props.path}
-      render={ () => {
-        return (checkAuth())
-      }  } />
+      render={() => {
+        checkIfUser()
+          .then(data => {
+            console.log(data);
+            // אם הכל בסדר אנחנו אמורים
+            // לקבל סטטוס
+            if (!data.status) {
+              toast.error("There problem, log in again");
+              // למחוק את הטוקן אם הוא לא תקין
+              localStorage.removeItem("tok");
+              history.push("/login");
+            }
+          })
+        return (<props.comp />);
+      }} />
   )
 }
 

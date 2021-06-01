@@ -29,7 +29,7 @@ export const doApiMethod = async (_url, _method, _bodyData) => {
     return resp.data;
   }
   catch (err) {
-    console.log(err);
+    console.log(err );
     // אם יש טעות גם הפרומיס שמאזין יריץ 
     // את ה ERR
     throw err;

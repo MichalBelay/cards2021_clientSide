@@ -39,6 +39,7 @@ function NavBar(props) {
             </React.Fragment>
             :
             <React.Fragment>
+              <Link to="/userInfo">User info</Link>
               <Link to="/favorites">My Favorites</Link>
               <Link onClick={logOut} to="#" className="text-danger">Log out</Link>
             </React.Fragment>
@@ -50,4 +51,4 @@ function NavBar(props) {
   )
 }
 
-export default NavBarף
+export default NavBar

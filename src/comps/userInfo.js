@@ -14,23 +14,21 @@ function UserInfo(props){
     // GET -> בבקשות גט לא מעבירים לפונקציה את הבאדי
     let data = await doApiMethod(url,"GET");
     console.log(data);
- data.dateCreated = data.createdAt.substr(0,data.createdAt.indexOf("T"));
+    data.dateCreated = data.createdAt.substr(0,data.createdAt.indexOf("T"));
+    // data.dateCreated = new Date(userInfo.createdAt).toDateString();
     setUserInfo(data);
-
   }
 
   return(
     <div>
       <PageHeader title="Info about your user:"/>
       <div>
-        <h4>Name: {userInfo.name}</h4>
-          <h4>Email: {userInfo.email}</h4>
-            <h4>Sing up data:{userInfo.dateCreated}</h4>
-
+        <h4 className="h5">Name: {userInfo.name}</h4>
+        <h4 className="h5">Email: {userInfo.email}</h4>
+        <h4 className="h5">Sign up data: {userInfo.dateCreated}</h4>
       </div>
     </div> 
   )
 }
-
 
 export default UserInfo
