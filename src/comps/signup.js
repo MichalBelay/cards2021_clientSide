@@ -1,15 +1,14 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
-import { API_URL, doApiMethod } from '../services/apiSer';
 import {useHistory} from "react-router-dom";
-
-import PageHeader from './common/pageHeader';
 import { toast } from 'react-toastify';
-
+import { API_URL, doApiMethod } from '../services/apiSer';
+import PageHeader from './common/pageHeader';
+ 
 function SignUpClient(props){
   let {register , handleSubmit ,  formState: { errors } } = useForm();
   let history = useHistory();
-  
+
   const onSubForm = async(formData) => {
     console.log(formData);
     
@@ -32,7 +31,7 @@ function SignUpClient(props){
         toast.error("User already in systme , try login");
       }
       else {
-       toast.error("There probelm , come back later and try again");
+        toast.error("There probelm , come back later and try again");
       }
     }
   }

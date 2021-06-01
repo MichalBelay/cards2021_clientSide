@@ -1,7 +1,8 @@
 import axios from "axios"
 
-//when we add to serves replce to url
+// שנעלה לשרת יתחליף לכתובת של השרת
 export const API_URL = "http://localhost:3400";
+// export const API_URL = "https://ynet.co.il";
 
 export const doApiGet = async (_url) => {
   try {
@@ -10,9 +11,8 @@ export const doApiGet = async (_url) => {
     return resp.data;
   } catch (err) {
     console.log(err)
-    return err;
+    throw err;
   }
-
 }
 
 export const doApiMethod = async (_url, _method, _bodyData) => {
@@ -29,7 +29,9 @@ export const doApiMethod = async (_url, _method, _bodyData) => {
     return resp.data;
   }
   catch (err) {
-    console.log(err)
-    return err;
+    console.log(err);
+    // אם יש טעות גם הפרומיס שמאזין יריץ 
+    // את ה ERR
+    throw err;
   }
 }

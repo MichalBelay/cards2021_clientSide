@@ -1,12 +1,14 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import { API_URL, doApiMethod } from '../services/apiSer';
+import {useHistory} from "react-router-dom";
 import PageHeader from './common/pageHeader';
 import {toast} from "react-toastify";
 
 
 function Login(props){
   let {register , handleSubmit ,  formState: { errors } } = useForm();
+  let history = useHistory();
   
   const onSubForm = async(formData) => {
     console.log(formData);
@@ -17,13 +19,15 @@ function Login(props){
       let data = await doApiMethod(url,"POST",formData);
       console.log(data);
       // קיבלנו טוקן : נשמור בלוקאל סטוראז ונשלח את המשמש
-      localStorage.setItem("tok",data.token)
+      localStorage.setItem("tok",data.token);
+      // toast("You logged in , good for you!11");
+      toast.success("You logged in !");
       // להצגת מידע על עצמו
-      toast.success("you logged in , good for you");
+      history.push("/userInfo");
     }
     catch(err){
       console.log(err);
-      toast.error("error user not found or maybe its password, you will never know!")
+      toast.error("User or password worng!");
     }
 
   }
