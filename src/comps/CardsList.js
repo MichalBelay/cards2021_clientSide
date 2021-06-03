@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getUserData } from '../services/userSer';
 
 
@@ -9,8 +9,20 @@ function CardsList(props) {
     // בודק מידע על היוזר
     // יעזור לנו להבין למשל במקרה שלה הקומפנינטה למה הוא
     // עשה כבר פייבוריט ולמה לא
-    setUserData(getUserData());
+    SetUserData(getUserData());
   },[])
+
+ const showBtnFav = (item) => {
+    return (
+      <button onClick={async () => {
+        let data = await updateUserCardsAddFav(item.bizNumber);
+        if(data.n == 1){
+          alert("all good been added")
+        }
+      }} className="btn btn-success">+ fav</button>
+    )
+  }
+
 
 
  
@@ -33,6 +45,10 @@ function CardsList(props) {
                 <hr />
                 <div><strong>Phone:</strong> {item.bizPhone}</div>
                 <div><strong>Address:</strong> {item.bizAddress}</div>
+                <div><strong>Biz number:</strong> {item.bizNumber}</div>
+                { userData._id ? <button className="btn btn-success">+ fav</button> : 
+                <small className="text text-danger">* log in to add to favorite</small> }
+
               </article>
             </div>
           </div>

@@ -34,7 +34,7 @@ function App() {
   }
 
   
-  return (
+  return ( 
     <Router>
       <header className="container-fluid shadow-sm">
         {/* בצורה הזאת אנחנו מקבלים יכולת לדבר דרך הפרופס
@@ -42,7 +42,10 @@ function App() {
         מחדש כל פעם שיש שינוי ביו אר אל */}
         <Route path="/" component={NavBar} />
       </header>
+{/* לא יציג את המידע עד שלא מקבלים מידע על היוזר */}
+      { user &&
       <main className="container" style={{ minHeight: "81vh" }}>
+    
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
@@ -53,6 +56,8 @@ function App() {
           <Route path="/" component={Page404} />
         </Switch>
       </main>
+      }
+
       <footer>
         <Footer />
       </footer>
