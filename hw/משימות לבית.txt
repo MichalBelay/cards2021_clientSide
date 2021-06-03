@@ -1,0 +1,9 @@
+משימה לבית לתרגול PAGENATION עם API
+
+התחברות ל API הבא
+http://www.omdbapi.com/?s=black&apikey=5a292f28&page=2
+
+הציגו את רשימת הסרטים (אפשר עם CARDS)
+ושימו לב שאתם מקבלים ב API חוץ מהמערך מאפיין בשם totalResults
+לכן צרו את מספר העמודים לפי ה TOTAL RESULRS  (אך שלא יציג יותר מ10 עמודים)
+

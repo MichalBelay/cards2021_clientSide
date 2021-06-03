@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from "axios"
 
 // שנעלה לשרת יתחליף לכתובת של השרת
 export const API_URL = "http://localhost:3400";
 // export const API_URL = "https://ynet.co.il";
-
+// קבוע שמחזיר כמה פריטים יהיו פר פייג
 export const PER_PAGE = 5;
 
 export const doApiGet = async (_url) => {

@@ -34,8 +34,4 @@ function FavoriteCards(props){
   )
 }
 
-export default FavoriteCards;
-
-{
-  /* <i class="fa fa-heart" aria-hidden="true"></i> */}
-  /* <i class="fa fa-heart-o" aria-hidden="true"></i> */
+export default FavoriteCards

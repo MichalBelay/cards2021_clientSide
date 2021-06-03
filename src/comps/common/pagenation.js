@@ -18,19 +18,16 @@ function Pagenation(props){
   }
 
   return(
-<div>
+    <div>
       <span>Page: </span>
       {/* לולאת מאפ בלי מערך אמיתי */}
        {[...Array(countPage)].map((item,i) => {
          return(
-         <Link key={i} to={props.linkTo+(i+1)} className="btn btn-dark me-1" >{i +1}</Link>
+         <Link key={i} to={props.linkto+(i+1)} className="btn btn-dark me-1" >{i + 1}</Link>
          )
        }) }
-    </div>
-
+    </div> 
   )
 }
 
-export default Pagenation
-
-
+export default Pagenation;
