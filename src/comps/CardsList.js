@@ -1,31 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { getUserData } from '../services/userSer';
-
+import { getUserData, updateUserCardsAddFav } from '../services/userSer';
 
 function CardsList(props) {
-  let [userData,SetUserData]=useState();
+
+  let [userData,setUserData] = useState();
 
   useEffect(() => {
     // בודק מידע על היוזר
     // יעזור לנו להבין למשל במקרה שלה הקומפנינטה למה הוא
     // עשה כבר פייבוריט ולמה לא
-    SetUserData(getUserData());
+    setUserData(getUserData());
   },[])
 
- const showBtnFav = (item) => {
-    return (
-      <button onClick={async () => {
-        let data = await updateUserCardsAddFav(item.bizNumber);
-        if(data.n == 1){
-          alert("all good been added")
-        }
-      }} className="btn btn-success">+ fav</button>
-    )
+
+const showBtnFav = (item) => {
+    // אם במקרה הביז נאמבר מופיע במאפיין קארד של היוזר 
+    // יוצג כפתור צהוב להסרת פייבוריט
+    if (!userData.cards.includes(item.bizNumber)) {
+      return (
+        <button onClick={async () => {
+          // מעדכן את המערך קארדס בקולקשן יוזר
+          let data = await updateUserCardsAddFav(item.bizNumber);
+          if (data.n == 1) {
+            alert("all good been added")
+          }
+        }} className="btn btn-success">+ fav</button>
+      )
+    }
+    else {
+      return (<button className="btn btn-warning">- fav</button>)
+    }
   }
 
 
-
- 
   return (
     <div className="row">
       {props.ar.map(item => {
@@ -46,9 +53,8 @@ function CardsList(props) {
                 <div><strong>Phone:</strong> {item.bizPhone}</div>
                 <div><strong>Address:</strong> {item.bizAddress}</div>
                 <div><strong>Biz number:</strong> {item.bizNumber}</div>
-                { userData._id ? <button className="btn btn-success">+ fav</button> : 
+                { userData._id ? showBtnFav(item) : 
                 <small className="text text-danger">* log in to add to favorite</small> }
-
               </article>
             </div>
           </div>
