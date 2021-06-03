@@ -31,10 +31,13 @@ function CardsList(props) {
       )
     }
     else {
-      return (<button onClick={async() => {
+      return
+      
+      
+       (<button onClick={async() => {
         await removeUserCardFav(item.bizNumber)
         forceUpdate(update+1);
-      }}  className="btn btn-warning">- fav</button>)
+      }}  className="btn btn-warning">- fav</button>) 
     }
   }
 
@@ -60,7 +63,9 @@ function CardsList(props) {
                 <div><strong>Address:</strong> {item.bizAddress}</div>
                 <div><strong>Biz number:</strong> {item.bizNumber}</div>
                 {userData._id ? showBtnFav(item) :
-                  <small className="text text-danger">* log in to add to favorite</small>}
+
+                <i class="fa fa-heart-o" aria-hidden="true"></i>}
+                  {/* <small className="text text-danger">* log in to add to favorite</small> */}
               </article>
             </div>
           </div>
@@ -72,6 +77,10 @@ function CardsList(props) {
 }
 
 export default CardsList
+
+{/* <i class="fa fa-heart" aria-hidden="true"></i> */}
+
+/* <i class="fa fa-heart-o" aria-hidden="true"></i> */
 
 
 
