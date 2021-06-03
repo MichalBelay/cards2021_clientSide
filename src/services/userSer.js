@@ -60,3 +60,25 @@ export const updateUserCardsAddFav = async(_bizCardNumber) => {
 }
 
 
+// מוריד כרטיס מהפייבורייט
+export const removeUserCardFav = async(_bizCardNumber) => {
+  // יחזיר לטמפ את כל הכרטיסים חוץ ממי שאנחנו רוצים להוריד
+  let temp_ar  = user.cards.filter(item => item != _bizCardNumber)
+  user.cards.splice(0, user.cards.length, ...temp_ar);
+
+  let url = API_URL+"/users/cards"
+  try{
+
+    let data = await doApiMethod(url,"PATCH",{cards:user.cards});
+     // אם יש הצלחה נקבל מהשרת אן שווה 1
+    if(data.n == 1){
+      toast.warning("Cards fav update")
+    }
+    return data;
+  }
+  catch(err){
+    console.log(err)
+    toast.error("There problem , try again later !")
+    throw err
+  }
+}

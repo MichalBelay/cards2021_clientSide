@@ -4,6 +4,7 @@ import { getUserData, updateUserCardsAddFav } from '../services/userSer';
 function CardsList(props) {
 
   let [userData,setUserData] = useState();
+  let [update,forceUpdate] = useState(1);
 
   useEffect(() => {
     // בודק מידע על היוזר
@@ -20,10 +21,11 @@ const showBtnFav = (item) => {
       return (
         <button onClick={async () => {
           // מעדכן את המערך קארדס בקולקשן יוזר
-          let data = await updateUserCardsAddFav(item.bizNumber);
-          if (data.n == 1) {
-            alert("all good been added")
-          }
+          await updateUserCardsAddFav(item.bizNumber);
+          // מעדכן סטייט של הקומפ שמחייב אותו לרנדר את עצמו מחדש
+          // וככה הוא משנה את הסטטוס של הכפתור בתצוגה
+          forceUpdate(update + 1);
+        
         }} className="btn btn-success">+ fav</button>
       )
     }
@@ -31,6 +33,7 @@ const showBtnFav = (item) => {
       return (<button className="btn btn-warning">- fav</button>)
     }
   }
+
 
 
   return (
