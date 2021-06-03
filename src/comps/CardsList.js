@@ -1,6 +1,19 @@
 import React from 'react';
+import { getUserData } from '../services/userSer';
+
 
 function CardsList(props) {
+  let [userData,SetUserData]=useState();
+
+  useEffect(() => {
+    // בודק מידע על היוזר
+    // יעזור לנו להבין למשל במקרה שלה הקומפנינטה למה הוא
+    // עשה כבר פייבוריט ולמה לא
+    setUserData(getUserData());
+  },[])
+
+
+ 
   return (
     <div className="row">
       {props.ar.map(item => {

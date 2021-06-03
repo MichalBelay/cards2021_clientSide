@@ -13,18 +13,26 @@ import Login from './comps/login';
 import Footer from './comps/footer';
 import UserInfo from './comps/userInfo';
 import ProtectedRoute from './comps/common/protectedRoute';
-import { useEffect } from 'react';
-import { checkUser } from './services/userSer';
+import { useEffect, useState } from 'react';
+import { updateUserData  } from './services/userSer';
 
 function App() {
-  let history = useHistory();
+  let [user,setUser]= useState(null);
+ 
 
-  useEffect(() => {
-    checkUser();
-    //TODO: אם יש טוקן רק אחרי
+ useEffect(() => {
+    ifUserLogin()
+        //TODO: אם יש טוקן רק אחרי
     // שקיבלנו בוודאות מידע של היוזר רק אז
     // נציד את המיין
   }, [])
+
+  const ifUserLogin = async() => {
+    let userData = await updateUserData ();
+    setUser(userData);
+    //if we have token we get all data user
+  }
+
   
   return (
     <Router>

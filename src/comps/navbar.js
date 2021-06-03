@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link , useHistory } from 'react-router-dom';
+import { updateUserData } from '../services/userSer';
+
 import { toast } from 'react-toastify';
 function NavBar(props) {
   let [showMobileNav, setShowMobileNav] = useState(false);
@@ -10,12 +12,15 @@ function NavBar(props) {
     setShowMobileNav(false);
   }
 
-  const logOut = () => {
+const logOut = async() => {
     // alert("log out");
     localStorage.removeItem("tok");
+     updateUserData();
     history.push("/login");
     toast.info("You logged out from system !");
+    
   }
+
 
   return (
     <div className="container nav_top p-2">

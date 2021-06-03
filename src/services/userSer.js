@@ -1,38 +1,38 @@
 import { API_URL, doApiMethod } from "./apiSer";
-import { checkIfUser } from "./authSer";
 
 let user = {};
 
-// הקובץ היכיל את כל המידע על יוזר הקיים
-// ויוכל לספק לכל קומפנינטה את המידע על המשתמש
 
-export const checkUser = async () => {
+export const updateUserData = async () => {
   if (localStorage["tok"]) {
-    // קודם בודק אם הטוקן תקין
-    let dataUser = await checkIfUser();
-    if (!dataUser.status) {
-      localStorage.removeItem("tok");
-      window.location.href = "/login";
-    }
-    else{
-      getUserDataFromApi();
-    }
-  }
-}
-
-
-export const getUserDataFromApi = async() => {
-  try{
+    // אם יש טוקן מנסים להוציא את המידע
+    // של המשתמש במידה והטוקן לא תקין
+    // נשלח אותו ללוג אין
     let url = API_URL + "/users/userInfo";
-    let data = await doApiMethod(url,"GET");
-    console.log(data);
-    user = data;
+    try{
+      let data = await doApiMethod(url,"GET");
+      if(data._id){
+        user = data
+      }
+      else{
+        localStorage.removeItem("tok");
+        user = {}
+      }
+      return user
+    }
+    catch(err){
+      localStorage.removeItem("tok");
+      user = {};
+      return user
+    }
   }
-  catch (err) {
+  else{
     user = {}
-
+    return user;
   }
 }
+
+
 
 export const getUserData = () => {
   return user;

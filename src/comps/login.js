@@ -4,6 +4,8 @@ import {toast} from "react-toastify";
 import { API_URL, doApiMethod } from '../services/apiSer';
 import {useHistory} from "react-router-dom"
 import PageHeader from './common/pageHeader';
+import { updateUserData } from '../services/userSer';
+
 
 
 function Login(props){
@@ -21,6 +23,8 @@ function Login(props){
       // קיבלנו טוקן : נשמור בלוקאל סטוראז ונשלח את המשמש
       localStorage.setItem("tok",data.token);
       // toast("You logged in , good for you!11");
+      await updateUserData ();
+
       toast.success("You logged in !");
       history.push("/userInfo");
     }
