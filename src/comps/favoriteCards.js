@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { API_URL, doApiGet, doApiMethod } from '../services/apiSer';
+import { API_URL, doApiMethod } from '../services/apiSer';
 
 
 import CardsList from './CardsList';
@@ -35,3 +35,7 @@ function FavoriteCards(props){
 }
 
 export default FavoriteCards;
+
+{
+  /* <i class="fa fa-heart" aria-hidden="true"></i> */}
+  /* <i class="fa fa-heart-o" aria-hidden="true"></i> */
