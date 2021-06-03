@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link , useHistory } from 'react-router-dom';
-import { updateUserData } from '../services/userSer';
-
 import { toast } from 'react-toastify';
+import { getUserData, updateUserData } from '../services/userSer';
 function NavBar(props) {
   let [showMobileNav, setShowMobileNav] = useState(false);
   let history = useHistory()
@@ -12,15 +11,15 @@ function NavBar(props) {
     setShowMobileNav(false);
   }
 
-const logOut = async() => {
+  const logOut = async() => {
     // alert("log out");
     localStorage.removeItem("tok");
+    // מעדכן שאין פרטים על היוזר לאחר שעשינו לוג אאוט
      updateUserData();
     history.push("/login");
     toast.info("You logged out from system !");
     
   }
-
 
   return (
     <div className="container nav_top p-2">

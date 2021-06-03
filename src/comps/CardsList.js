@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { getUserData, updateUserCardsAddFav } from '../services/userSer';
+import { getUserData, removeUserCardFav, updateUserCardsAddFav } from '../services/userSer';
 
 function CardsList(props) {
 
-  let [userData,setUserData] = useState();
-  let [update,forceUpdate] = useState(1);
+  let [userData, setUserData] = useState();
+  let [update,forceUpdate] = useState(1)
 
   useEffect(() => {
     // בודק מידע על היוזר
     // יעזור לנו להבין למשל במקרה שלה הקומפנינטה למה הוא
     // עשה כבר פייבוריט ולמה לא
     setUserData(getUserData());
-  },[])
+  }, [])
 
 
-const showBtnFav = (item) => {
+  const showBtnFav = (item) => {
     // אם במקרה הביז נאמבר מופיע במאפיין קארד של היוזר 
     // יוצג כפתור צהוב להסרת פייבוריט
     if (!userData.cards.includes(item.bizNumber)) {
@@ -24,17 +24,19 @@ const showBtnFav = (item) => {
           await updateUserCardsAddFav(item.bizNumber);
           // מעדכן סטייט של הקומפ שמחייב אותו לרנדר את עצמו מחדש
           // וככה הוא משנה את הסטטוס של הכפתור בתצוגה
+          // forceupdate -> פונקציה שאנחנו יצרנו עם יוז סטייט
           forceUpdate(update + 1);
         
         }} className="btn btn-success">+ fav</button>
       )
     }
     else {
-      return (<button className="btn btn-warning">- fav</button>)
+      return (<button onClick={async() => {
+        await removeUserCardFav(item.bizNumber)
+        forceUpdate(update+1);
+      }}  className="btn btn-warning">- fav</button>)
     }
   }
-
-
 
   return (
     <div className="row">
@@ -46,7 +48,8 @@ const showBtnFav = (item) => {
             <div className="border">
               {/* הגדרות עיצוב נמצאות בקובץ card.css */}
               <div className="biz_img" style={{
-                 backgroundImage:  `url(${bg})` }} >
+                backgroundImage: `url(${bg})`
+              }} >
 
               </div>
               <article className="p-3">
@@ -56,8 +59,8 @@ const showBtnFav = (item) => {
                 <div><strong>Phone:</strong> {item.bizPhone}</div>
                 <div><strong>Address:</strong> {item.bizAddress}</div>
                 <div><strong>Biz number:</strong> {item.bizNumber}</div>
-                { userData._id ? showBtnFav(item) : 
-                <small className="text text-danger">* log in to add to favorite</small> }
+                {userData._id ? showBtnFav(item) :
+                  <small className="text text-danger">* log in to add to favorite</small>}
               </article>
             </div>
           </div>

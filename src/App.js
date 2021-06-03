@@ -14,27 +14,25 @@ import Footer from './comps/footer';
 import UserInfo from './comps/userInfo';
 import ProtectedRoute from './comps/common/protectedRoute';
 import { useEffect, useState } from 'react';
-import { updateUserData  } from './services/userSer';
+import { updateUserData } from './services/userSer';
+import FavoriteCards from './comps/favoriteCards';
 
 function App() {
-  let [user,setUser]= useState(null);
- 
+  let [user,setUser] = useState(null);
 
- useEffect(() => {
+  useEffect(() => {
     ifUserLogin()
-        //TODO: אם יש טוקן רק אחרי
-    // שקיבלנו בוודאות מידע של היוזר רק אז
-    // נציד את המיין
+        
   }, [])
 
   const ifUserLogin = async() => {
-    let userData = await updateUserData ();
-    setUser(userData);
-    //if we have token we get all data user
+    let data = await updateUserData();
+    // במידה ויש טוקן נקבל את כל המידע על היוזר שלנו
+    // וגם נבדוק בהתחלה שהיוזר קיבל מידע לפני שנציג את המידע באתר
+    setUser(data);
   }
-
   
-  return ( 
+  return (
     <Router>
       <header className="container-fluid shadow-sm">
         {/* בצורה הזאת אנחנו מקבלים יכולת לדבר דרך הפרופס
@@ -42,7 +40,7 @@ function App() {
         מחדש כל פעם שיש שינוי ביו אר אל */}
         <Route path="/" component={NavBar} />
       </header>
-{/* לא יציג את המידע עד שלא מקבלים מידע על היוזר */}
+          {/* לא יציג את המידע עד שלא מקבלים מידע על היוזר */}
       { user &&
       <main className="container" style={{ minHeight: "81vh" }}>
     
@@ -53,11 +51,11 @@ function App() {
           <Route exact path="/login" component={Login} />
           {/* <Route exact path="/userInfo" component={UserInfo}/> */}
           <ProtectedRoute path="/userInfo" comp={UserInfo} />
+          <ProtectedRoute path="/favorites" comp={FavoriteCards} />
           <Route path="/" component={Page404} />
         </Switch>
       </main>
       }
-
       <footer>
         <Footer />
       </footer>

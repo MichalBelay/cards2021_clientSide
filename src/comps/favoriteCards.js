@@ -1,32 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { API_URL, doApiGet } from '../services/apiSer';
+import { API_URL, doApiGet, doApiMethod } from '../services/apiSer';
+
 
 import CardsList from './CardsList';
 import PageHeader from './common/pageHeader';
 
-
-function Home(props){
+function FavoriteCards(props){
   let [cards_ar,setCardsAr] = useState([]);
 
   useEffect(() => {
-    let url = API_URL+"/cards"
+    let url = API_URL + "/users/userCardsFav";
     doApi(url)
-
   },[])
 
   const doApi = async(_url) => {
-    let data = await doApiGet(_url);
+    try{
+    let data = await doApiMethod(_url,"GET");
     console.log(data);
     setCardsAr(data);
+    }
+    catch(err){
+      console.log(err.response)
+    }
   }
 
+  //TODO: add redux to update
 
   return(
     <div>
-      <PageHeader title="Welcome to home page" />
+      <PageHeader title="Your favorite business cards" />
       <CardsList ar={cards_ar}/>
     </div> 
   )
 }
 
-export default Home
+export default FavoriteCards;

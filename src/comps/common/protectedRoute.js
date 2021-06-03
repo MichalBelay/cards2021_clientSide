@@ -8,7 +8,6 @@ function ProtectedRoute(props) {
 
   const checkTokenUser = async () => {
     let data = await checkIfUser()
-
     console.log(data);
     // אם הכל בסדר אנחנו אמורים
     // לקבל סטטוס
@@ -18,7 +17,6 @@ function ProtectedRoute(props) {
       localStorage.removeItem("tok");
       history.push("/login");
     }
-
   }
 
   return (
@@ -32,10 +30,3 @@ function ProtectedRoute(props) {
 }
 
 export default ProtectedRoute;
-
-
-
-
-
-
-

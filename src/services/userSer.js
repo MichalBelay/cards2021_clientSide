@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { API_URL, doApiMethod } from "./apiSer";
 
 let user = {};
@@ -6,6 +7,7 @@ let user = {};
 export const updateUserData = async () => {
   if (localStorage["tok"]) {
     // אם יש טוקן מנסים להוציא את המידע
+    // על המשתמש ככה שנוכל בכל מקום לשלוף אותו
     // של המשתמש במידה והטוקן לא תקין
     // נשלח אותו ללוג אין
     let url = API_URL + "/users/userInfo";
@@ -50,29 +52,32 @@ export const updateUserCardsAddFav = async(_bizCardNumber) => {
   try{
 
     let data = await doApiMethod(url,"PATCH",{cards:user.cards});
+     // אם יש הצלחה נקבל מהשרת אן שווה 1
+    if(data.n == 1){
+      toast.success("Cards fav update")
+    }
     return data;
   }
   catch(err){
     console.log(err)
-    alert("there problem, try again later")
+    toast.error("There problem , try again later !")
     throw err
   }
 }
-
 
 // מוריד כרטיס מהפייבורייט
 export const removeUserCardFav = async(_bizCardNumber) => {
   // יחזיר לטמפ את כל הכרטיסים חוץ ממי שאנחנו רוצים להוריד
   let temp_ar  = user.cards.filter(item => item != _bizCardNumber)
   user.cards.splice(0, user.cards.length, ...temp_ar);
-
+  
   let url = API_URL+"/users/cards"
   try{
 
     let data = await doApiMethod(url,"PATCH",{cards:user.cards});
      // אם יש הצלחה נקבל מהשרת אן שווה 1
     if(data.n == 1){
-      toast.warning("Cards fav update")
+      toast.warning("Cards fav removed")
     }
     return data;
   }
