@@ -11,6 +11,7 @@ function Pagenation(props){
 
   const doApi = async() => {
     let url = API_URL+props.urlOfItemNum
+    // מחזיר את כמות הרשומות של הכרטיסים
     let data = await doApiGet(url);
     console.log(data.count);
     // מחזיר את מספר העמודים שנצטרך
