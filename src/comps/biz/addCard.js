@@ -68,7 +68,7 @@ function AddCard(props) {
         </div>
         <div className="col-lg-12">
           <label>*Biz info</label>
-          <textarea {...descRef} class="form-control" rows="4"></textarea>
+          <textarea {...descRef} className="form-control" rows="4"></textarea>
           {errors.bizDescription &&
             <small className="text-danger">* You must enter descrption of biz</small>
           }

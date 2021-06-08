@@ -7,3 +7,7 @@ http://www.omdbapi.com/?s=black&apikey=5a292f28&page=2
 ושימו לב שאתם מקבלים ב API חוץ מהמערך מאפיין בשם totalResults
 לכן צרו את מספר העמודים לפי ה TOTAL RESULRS  (אך שלא יציג יותר מ10 עמודים)
 
+mongodb+srv://oshra:oshrabelay12@cluster0.gblxx.mongodb.net/test
+
+
+mongodb+srv://oshra:oshrabelay1312@cluster0.gblxx.mongodb.net/test

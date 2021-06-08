@@ -5,8 +5,6 @@ import { checkIfUser } from '../../services/authSer';
 import { getUserData } from '../../services/userSer';
 
 function ProtectedRoute(props) {
-
-  
   let history = useHistory();
 
   const checkTokenUser = async () => {
@@ -40,8 +38,8 @@ function ProtectedRoute(props) {
       render={() => {
         // בודק אם היוזר מחובר ואם לא משגר אותו בחזרה ללוגאין
         checkTokenUser();
-        /* {...props} כדי שנוכל לאסןף פרןפס מקןמפיננטה שמקבלת פרמטר */
-        return (<props.comp {...props}/>);
+        // {...props} -> כדי שנוכל לאסוף פרופס מקומפניטה שמקבלת פרמטר
+        return (<props.comp {...props}  />);
       }} />
   )
 }

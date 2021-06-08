@@ -32,8 +32,6 @@ function MyCards(props) {
     }
   }
 
- 
-
   return (
     <div className="container">
       <PageHeader title="Biz cards you added before:" />
@@ -60,11 +58,12 @@ function MyCards(props) {
                   <td>{item.bizDescription.substr(0,40)}...</td>
                   <td>{item.bizAddress}</td>
                   <td>{item.bizPhone}</td>
-                  <td>
-                 <Link to={"/editCard/"+item._id}>
+                  <td className="text-center">
+                    {/* כפתור עריכה
+                    ייקח למיקום הנכון */}
+                    <Link to={"/editCard/"+item._id}>
                     <button>edit</button>
                     </Link>
-
                     <button onClick={() => {
                       delCard(item._id);
                     }} className="ms-2" style={{ background: "pink" }}>del</button>

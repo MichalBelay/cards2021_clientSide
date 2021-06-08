@@ -59,8 +59,7 @@ function App() {
          {/* bizRoute -> רק עסק יכול להיות בראוט הזה */}
           <ProtectedRoute bizRoute={true} path="/myBizCards" comp={MyCards} />
           <ProtectedRoute bizRoute={true} path="/addCard" comp={AddCard} />
-          <ProtectedRoute bizRoute={true} path="/editCard" comp={EditCard} />
-
+          <ProtectedRoute bizRoute={true} path="/editCard/:id" comp={EditCard} />
           <Route path="/" component={Page404} />
         </Switch>
       </main>
@@ -68,7 +67,7 @@ function App() {
       <footer>
         <Footer />
       </footer>
-      <ToastContainer />
+      <ToastContainer position="top-left"/>
     </Router>
   );
 }
